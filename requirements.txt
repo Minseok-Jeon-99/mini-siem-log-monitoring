@@ -1,0 +1,13 @@
+# Web Framework
+fastapi==0.115.0
+uvicorn[standard]==0.32.0
+pydantic==2.9.2
+
+# HTTP Client
+requests==2.32.3
+
+# Environment Variables
+python-dotenv==1.0.1
+
+# Additional Dependencies
+python-multipart==0.0.12

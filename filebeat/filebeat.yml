@@ -1,0 +1,9 @@
+filebeat.inputs:
+  - type: log
+    paths:
+      - /var/log/mini_siem/*.log
+
+output.elasticsearch:
+  hosts: ["elasticsearch:9200"]
+  username: "elastic"
+  password: "${ELASTIC_PASSWORD}"
