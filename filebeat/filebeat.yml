@@ -4,5 +4,38 @@ filebeat.inputs:
     paths:
       - /var/log/mini_siem/*.log
 
+    # 로그 파싱 (Dissect 프로세서)
+    processors:
+      - dissect:
+          tokenizer: "%{timestamp} [%{log_level}] [EVENT] %{event_type} | IP=%{source_ip} | Severity=%{severity} | Threat=%{is_threat}"
+          field: "message"
+          target_prefix: "siem"
+          ignore_failure: true
+
+      - dissect:
+          tokenizer: "%{timestamp} [%{log_level}] %{threat_marker} THREAT DETECTED: %{threat_details}"
+          field: "message"
+          target_prefix: "siem"
+          ignore_failure: true
+
+      # 타임스탬프 파싱
+      - timestamp:
+          field: siem.timestamp
+          layouts:
+            - '2006-01-02 15:04:05,000'
+          ignore_failure: true
+
+      # 필드 타입 변환
+      - convert:
+          fields:
+            - {from: "siem.is_threat", type: "boolean"}
+          ignore_failure: true
+
 output.elasticsearch:
   hosts: ["elasticsearch:9200"]
+  index: "siem-logs-%{+yyyy.MM.dd}"
+
+# Elasticsearch 인덱스 템플릿 설정
+setup.ilm.enabled: false
+setup.template.name: "siem-logs"
+setup.template.pattern: "siem-logs-*"
