@@ -1168,5 +1168,3 @@ filebeat:
    docker-compose down -v
    docker-compose up -d --build
    ```
-
-4. **GitHub Issues:** https://github.com/anthropics/claude-code/issues
