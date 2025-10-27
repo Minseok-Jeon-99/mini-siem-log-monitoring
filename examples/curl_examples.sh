@@ -2,7 +2,7 @@
 # Mini-SIEM API 사용 예제 (curl)
 
 API_URL="http://localhost:8000"
-API_KEY="your_api_key_here"  # .env 파일의 API_KEY와 동일하게 설정
+API_KEY="test_api_key"  # .env 파일의 API_KEY와 동일하게 설정
 
 echo "======================================"
 echo "Mini-SIEM API Usage Examples (curl)"

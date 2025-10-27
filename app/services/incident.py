@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import Dict, List, Optional
-from app.models.log import Incident, IncidentStatus, NormalizedLog, EventType, SeverityLevel
+from models.log import Incident, IncidentStatus, NormalizedLog, EventType, SeverityLevel
 
 
 class IncidentManager:

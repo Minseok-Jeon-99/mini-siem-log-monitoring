@@ -1,7 +1,7 @@
 import re
 from datetime import datetime, time
 from typing import Tuple, Optional
-from app.models.log import NormalizedLog, SeverityLevel, EventType
+from models.log import NormalizedLog, SeverityLevel, EventType
 
 
 class ThreatDetector:

@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from typing import Dict, List
 from collections import defaultdict, Counter
-from app.models.log import NormalizedLog, DashboardStats, SeverityLevel
+from models.log import NormalizedLog, DashboardStats, SeverityLevel
 
 
 class StatisticsService:
