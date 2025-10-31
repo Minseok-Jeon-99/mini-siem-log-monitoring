@@ -6,14 +6,17 @@ filebeat.inputs:
 
     # 로그 파싱 (Dissect 프로세서)
     processors:
+      # 패턴 1: [EVENT] 형식 로그 (이모지 없음)
       - dissect:
           tokenizer: "%{timestamp} [%{log_level}] [EVENT] %{event_type} | IP=%{source_ip} | Severity=%{severity} | Threat=%{is_threat}"
           field: "message"
           target_prefix: "siem"
           ignore_failure: true
 
+      # 패턴 2: THREAT DETECTED 형식 로그 (이모지 포함)
+      # 이모지는 %{?emoji}로 캡처하되 결과에서 제외
       - dissect:
-          tokenizer: "%{timestamp} [%{log_level}] %{threat_marker} THREAT DETECTED: %{threat_details}"
+          tokenizer: "%{timestamp} [%{log_level}] %{?emoji} THREAT DETECTED: %{threat_details}"
           field: "message"
           target_prefix: "siem"
           ignore_failure: true
